@@ -30,7 +30,7 @@ MNIST_LOCATION = locations.MNIST_LOCATION
 
 FASHIONMNIST_LOCATION = locations.FASHION_MNIST_LOCATION
 
-OPTIMIZER_FN = functools.partial(tf.train.GradientDescentOptimizer, .1)
+OPTIMIZER_FN = functools.partial(tf.compat.v1.train.GradientDescentOptimizer, .1)
 
 PRUNE_PERCENTS = {'layer0': .2, 'layer1': .2, 'layer2': .1}
 
