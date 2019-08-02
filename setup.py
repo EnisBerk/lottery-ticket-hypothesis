@@ -46,11 +46,11 @@ setup(
     ],
 
     keywords='lottery ticket hypothesis',
-    packages=['lottery_ticket', 'lottery_ticket.foundations', 'lottery_ticket.datasets', 'lottery_ticket.mnist_fc'],
-    package_dir={'lottery_ticket': '.',
-                 'lottery_ticket.foundations': './foundations',
-                 'lottery_ticket.datasets': './datasets',
-                 'lottery_ticket.mnist_fc': './mnist_fc'},
+    packages=find_packages(exclude=['contrib', 'docs', 'tests']),  # Required
+    # package_dir={'lottery_ticket': '.',
+    #              'lottery_ticket.foundations': './foundations',
+    #              'lottery_ticket.datasets': './datasets',
+    #              'lottery_ticket.mnist_fc': './mnist_fc'},
 
     install_requires=DEPENDENCIES,
 )
