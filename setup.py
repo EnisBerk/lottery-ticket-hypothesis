@@ -7,7 +7,7 @@ DEPENDENCIES = [
     'six',
     'fire',
     'tensorflow',
-    'tensorflow-gpu'
+    'tensorflow-gpu',
     'keras',
     'numpy',
     'absl-py',
