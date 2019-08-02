@@ -140,14 +140,14 @@ class ModelBase(object):
 
     # Create summaries for loss and accuracy.
     self._train_summaries = [
-        tf.summary.scalar('train_loss', self._loss),
-        tf.summary.scalar('train_accuracy', accuracy)
+        tf.compat.v1.summary.scalar ('train_loss', self._loss),
+        tf.compat.v1.summary.scalar ('train_accuracy', accuracy)
     ]
     self._test_summaries = [
-        tf.summary.scalar('test_loss', self._loss),
-        tf.summary.scalar('test_accuracy', accuracy)
+        tf.compat.v1.summary.scalar ('test_loss', self._loss),
+        tf.compat.v1.summary.scalar ('test_accuracy', accuracy)
     ]
     self._validate_summaries = [
-        tf.summary.scalar('validate_loss', self._loss),
-        tf.summary.scalar('validate_accuracy', accuracy)
+        tf.compat.v1.summary.scalar ('validate_loss', self._loss),
+        tf.compat.v1.summary.scalar ('validate_accuracy', accuracy)
     ]

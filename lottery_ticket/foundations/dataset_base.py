@@ -70,8 +70,8 @@ class DatasetBase(object):
       self._validate = None
 
     # Create the overall iterator.
-    self._handle = tf.placeholder(tf.string, shape=[])
-    iterator = tf.data.Iterator.from_string_handle(
+    self._handle = tf.compat.v1.placeholder(tf.string, shape=[])
+    iterator = tf.compat.v1.data.Iterator.from_string_handle(
         self._handle, self._train.dataset.output_types,
         self._train.dataset.output_shapes)
     self._placeholders = iterator.get_next()

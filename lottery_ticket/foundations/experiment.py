@@ -50,8 +50,8 @@ def experiment(make_dataset, make_model, train_model, prune_masks, iterations,
   # A helper function that trains the network once according to the behavior
   # determined internally by the train_model function.
   def train_once(iteration, presets=None, masks=None):
-    tf.reset_default_graph()
-    sess = tf.Session()
+    tf.compat.v1.reset_default_graph()
+    sess = tf.compat.v1.Session()
     dataset = make_dataset()
     input_tensor, label_tensor = dataset.placeholders
     model = make_model(input_tensor, label_tensor, presets=presets, masks=masks)

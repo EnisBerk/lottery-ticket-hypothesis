@@ -57,10 +57,10 @@ def train(sess, dataset, model, optimizer_fn, training_len, output_dir,
 
   # Optional operations to perform before training.
   if params.get('save_summaries', False):
-    writer = tf.summary.FileWriter(paths.summaries(output_dir))
-    train_file = tf.gfile.GFile(paths.log(output_dir, 'train'), 'w')
-    test_file = tf.gfile.GFile(paths.log(output_dir, 'test'), 'w')
-    validate_file = tf.gfile.GFile(paths.log(output_dir, 'validate'), 'w')
+    writer = tf.compat.v1.summary.FileWriter(paths.summaries(output_dir))
+    train_file = tf.io.gfile.GFile(paths.log(output_dir, 'train'), 'w')
+    test_file = tf.io.gfile.GFile(paths.log(output_dir, 'test'), 'w')
+    validate_file = tf.io.gfile.GFile(paths.log(output_dir, 'validate'), 'w')
 
   if params.get('save_network', False):
     save_restore.save_network(paths.initial(output_dir), initial_weights)
@@ -83,7 +83,7 @@ def train(sess, dataset, model, optimizer_fn, training_len, output_dir,
         writer.add_summary(record, iteration)
 
         # Log to text file for convenience.
-        summary_proto = tf.Summary()
+        summary_proto = tf.compat.v1.Summary()
         summary_proto.ParseFromString(record)
         value = summary_proto.value[0]
         log += [value.tag, str(value.simple_value)]

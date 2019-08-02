@@ -75,5 +75,5 @@ def train(output_dir,
 
   # Train.
   params = {'test_interval': 100, 'save_summaries': True, 'save_network': True}
-  trainer.train(tf.Session(), dataset, model, constants.OPTIMIZER_FN,
+  trainer.train(tf.compat.v1.Session(), dataset, model, constants.OPTIMIZER_FN,
                 training_len, output_dir, **params)

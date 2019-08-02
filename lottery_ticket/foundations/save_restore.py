@@ -80,7 +80,7 @@ def restore_network(filename):
 
   weights_dict = {}
 
-  for basename in tf.gfile.ListDirectory(filename):
+  for basename in tf.io.gfile.listdir(filename):
     name = basename.split('.')[0]
     with tf.io.gfile.GFile(os.path.join(filename, basename),"rb") as fp:
       weights_dict[name] = np.load(fp,allow_pickle=True)
@@ -150,7 +150,7 @@ def read_log(directory, name='test', tail=0):
       'accuracy': [],
   }
 
-  with tf.gfile.GFile(paths.log(directory, name)) as fp:
+  with tf.io.gfile.GFile(paths.log(directory, name)) as fp:
     reader = csv.reader(fp)
     for row in reader:
       output['iteration'].append(float(row[1]))
@@ -177,7 +177,7 @@ def write_log(data, directory, name='test'):
       to be stored.
     name: What to call the data file itself.
   """
-  with tf.gfile.GFile(paths.log(directory, name), 'w') as fp:
+  with tf.io.gfile.GFile(paths.log(directory, name), 'w') as fp:
     for loss, it, acc in zip(data['loss'], data['iteration'], data['accuracy']):
       fp.write(','.join(
           ('iteration',
