@@ -82,8 +82,8 @@ def restore_network(filename):
 
   for basename in tf.gfile.ListDirectory(filename):
     name = basename.split('.')[0]
-    with tf.io.gfile.GFile(os.path.join(filename, basename)) as fp:
-      weights_dict[name] = np.load(fp)
+    with tf.io.gfile.GFile(os.path.join(filename, basename),"rb") as fp:
+      weights_dict[name] = np.load(fp,allow_pickle=True)
 
   return weights_dict
 
