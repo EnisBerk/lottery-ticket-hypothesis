@@ -19,19 +19,22 @@ from __future__ import division
 from __future__ import print_function
 
 import fire
-from keras.datasets import mnist
+from keras.datasets import mnist,fashion_mnist
 from lottery_ticket.foundations import save_restore
 from lottery_ticket.mnist_fc import locations
 
+datasets={"mnist":(mnist,locations.MNIST_LOCATION),
+        "fashion_mnist":(fashion_mnist,locations.MNIST_LOCATION)}
 
-def download(location=locations.MNIST_LOCATION):
-  d = {}
-  (d['x_train'], d['y_train']), (d['x_test'], d['y_test']) = mnist.load_data()
-  save_restore.save_network(location, d)
-
+def download(dataset):
+    d = {}
+    dataset_func,location=datasets.get(dataset,(None,None))
+    if dataset_func:
+        (d['x_train'], d['y_train']), (d['x_test'], d['y_test']) = dataset_func.load_data()
+        save_restore.save_network(location, d)
 
 def main(unused_argv):
-  fire.Fire(download)
+    fire.Fire(download)
 
 if __name__ == '__main__':
-  main()
+    main()

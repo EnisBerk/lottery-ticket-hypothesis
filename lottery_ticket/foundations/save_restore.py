@@ -45,12 +45,12 @@ def save_network(filename, weights_dict):
       value is a numpy array. This is the dictionary of values that is to be
       saved.
   """
-  if tf.io.gfile.Exists(filename):
+  if tf.io.gfile.exists(filename):
     tf.gfile.DeleteRecursively(filename)
-  tf.io.gfile.MakeDirs(filename)
+  tf.io.gfile.makedirs(filename)
 
   for k, v in weights_dict.items():
-    with tf.gfile.FastGFile(os.path.join(filename, k + '.npy'), 'w') as fp:
+    with tf.io.gfile.GFile(os.path.join(filename, k + '.npy'), 'w') as fp:
       np.save(fp, v)
 
 
