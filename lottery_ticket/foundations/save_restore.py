@@ -46,7 +46,7 @@ def save_network(filename, weights_dict):
       saved.
   """
   if tf.io.gfile.exists(filename):
-    tf.gfile.DeleteRecursively(filename)
+    tf.io.gfile.rmtree(filename)
   tf.io.gfile.makedirs(filename)
 
   for k, v in weights_dict.items():
