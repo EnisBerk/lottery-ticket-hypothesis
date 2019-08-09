@@ -41,6 +41,8 @@ def prune_by_percent(percents, masks, final_weights):
     sorted_weights = np.sort(np.abs(final_weight[mask == 1]))
 
     # Determine the cutoff for weights to be pruned.
+    if sorted_weights.size==0 or percent==0: #then do not modify mask
+      return mask
     cutoff_index = np.round(percent * sorted_weights.size).astype(int)
     cutoff = sorted_weights[cutoff_index]
 
